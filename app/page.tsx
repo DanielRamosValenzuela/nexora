@@ -17,20 +17,36 @@ export default function Home() {
         {/* Hero — transparent, video fully visible */}
         <Hero />
 
-        {/* Smooth gradient transition from hero into content */}
-        <div className="relative">
-          <div className="absolute -top-40 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-[#060b18]/80 pointer-events-none" />
+        {/*
+          Transition overlay — starts INSIDE the hero (overlaps last 300px)
+          and extends into the content. This creates one seamless gradient
+          with no hard edge between hero and sections.
+        */}
+        <div
+          className="relative -mt-[300px] pt-[300px]"
+          aria-hidden="true"
+          style={{
+            pointerEvents: "none",
+          }}
+        >
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to bottom, transparent 0%, rgba(6,11,24,0.15) 100px, rgba(6,11,24,0.35) 200px, rgba(6,11,24,0.55) 350px, rgba(6,11,24,0.7) 500px, rgba(6,11,24,0.8) 700px)",
+            }}
+          />
+        </div>
 
-          {/* Single continuous backdrop for all sections — no hard edges */}
-          <div className="bg-[#060b18]/80 backdrop-blur-[3px]">
-            <main>
-              <Services />
-              <Process />
-              <Features />
-              <Contact />
-            </main>
-            <Footer />
-          </div>
+        {/* Content sections — solid backdrop, no blur needed */}
+        <div className="relative bg-[#060b18]/80">
+          <main>
+            <Services />
+            <Process />
+            <Features />
+            <Contact />
+          </main>
+          <Footer />
         </div>
       </div>
     </>

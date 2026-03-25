@@ -22,7 +22,7 @@ export function Contact() {
             ¿Listo para{" "}
             <span className="text-gradient-teal">transformar</span> tu empresa?
           </h2>
-          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-[1.7]">
+          <p className="mt-5 text-lg text-soft max-w-2xl mx-auto leading-[1.7]">
             Cuéntanos sobre tu proyecto y te contactamos en menos de 24 horas
             con una propuesta personalizada.
           </p>
@@ -36,7 +36,7 @@ export function Contact() {
                 <h3 className="font-heading text-xl font-semibold mb-3">
                   Agenda tu consulta gratuita
                 </h3>
-                <p className="text-muted-foreground leading-[1.7]">
+                <p className="text-soft leading-[1.7]">
                   Sin compromiso. Analizamos tus procesos actuales y te
                   proponemos una solución a medida.
                 </p>
@@ -60,7 +60,7 @@ export function Contact() {
                       <item.icon className="size-5" />
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-soft">
                         {item.label}
                       </p>
                       <p className="font-medium">{item.value}</p>
@@ -86,7 +86,7 @@ export function Contact() {
                     <h3 className="font-heading text-2xl font-semibold mb-2">
                       Mensaje enviado
                     </h3>
-                    <p className="text-muted-foreground max-w-sm">
+                    <p className="text-soft max-w-sm">
                       Gracias por contactarnos. Te responderemos en menos de 24
                       horas.
                     </p>
@@ -102,7 +102,7 @@ export function Contact() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div className="space-y-2">
                         <Label htmlFor="name">
-                          <User className="size-3.5 text-muted-foreground" />
+                          <User className="size-3.5 text-soft" />
                           Nombre
                         </Label>
                         <Input
@@ -114,7 +114,7 @@ export function Contact() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email">
-                          <Mail className="size-3.5 text-muted-foreground" />
+                          <Mail className="size-3.5 text-soft" />
                           Email
                         </Label>
                         <Input
@@ -129,9 +129,9 @@ export function Contact() {
 
                     <div className="space-y-2">
                       <Label htmlFor="company">
-                        <Building2 className="size-3.5 text-muted-foreground" />
+                        <Building2 className="size-3.5 text-soft" />
                         Empresa{" "}
-                        <span className="text-muted-foreground font-normal">
+                        <span className="text-soft font-normal">
                           (opcional)
                         </span>
                       </Label>
@@ -144,7 +144,7 @@ export function Contact() {
 
                     <div className="space-y-2">
                       <Label htmlFor="message">
-                        <MessageSquare className="size-3.5 text-muted-foreground" />
+                        <MessageSquare className="size-3.5 text-soft" />
                         Cuéntanos tu proyecto
                       </Label>
                       <Textarea
@@ -165,7 +165,7 @@ export function Contact() {
                       <Send className="ml-2 size-4" />
                     </Button>
 
-                    <p className="text-xs text-center text-muted-foreground">
+                    <p className="text-xs text-center text-soft">
                       Al enviar aceptas nuestra política de privacidad. No
                       compartimos tus datos con terceros.
                     </p>

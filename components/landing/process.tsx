@@ -71,7 +71,7 @@ function ProcessCard({ step, delay }: { step: Step; delay: number }) {
         <h3 className="font-heading text-xl font-semibold mb-2">
           {step.title}
         </h3>
-        <p className="text-muted-foreground leading-relaxed text-sm">
+        <p className="text-soft leading-relaxed text-sm">
           {step.description}
         </p>
       </div>
@@ -90,7 +90,7 @@ export function Process() {
           <h2 className="font-heading mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-[-0.02em]">
             Cómo trabajamos
           </h2>
-          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-[1.7]">
+          <p className="mt-5 text-lg text-soft max-w-2xl mx-auto leading-[1.7]">
             Un proceso probado que garantiza resultados excepcionales en cada
             proyecto.
           </p>

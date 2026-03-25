@@ -239,7 +239,7 @@ export function Navbar() {
                       size={18}
                       className={`
                         transition-all duration-300
-                        ${isActive ? "text-teal" : "text-muted-foreground"}
+                        ${isActive ? "text-teal" : "text-soft"}
                         ${isHovered ? "text-teal-light scale-105" : ""}
                       `}
                     />

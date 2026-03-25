@@ -67,7 +67,7 @@ export function Services() {
             Soluciones que impulsan{" "}
             <span className="text-gradient-teal">tu negocio</span>
           </h2>
-          <p className="mt-5 text-lg text-muted-foreground max-w-2xl mx-auto leading-[1.7]">
+          <p className="mt-5 text-lg text-soft max-w-2xl mx-auto leading-[1.7]">
             Cada empresa es única. Haz clic en cada nodo para explorar nuestros
             servicios interconectados.
           </p>
@@ -93,7 +93,7 @@ export function Services() {
                 <h3 className="font-heading text-lg font-semibold mb-2">
                   {s.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-soft leading-relaxed">
                   {s.content}
                 </p>
               </div>

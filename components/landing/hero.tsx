@@ -76,7 +76,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7 }}
-          className="mt-6 text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-[1.7]"
+          className="mt-6 text-base sm:text-lg lg:text-xl text-soft max-w-2xl mx-auto leading-[1.7]"
         >
           Automatizamos y digitalizamos los procesos operativos de tu empresa
           con soluciones de software diseñadas a la medida de tus necesidades.
@@ -110,7 +110,7 @@ export function Hero() {
         style={{ opacity: textOpacity }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
       >
-        <span className="text-xs text-muted-foreground tracking-widest uppercase">
+        <span className="text-xs text-soft/70 tracking-widest uppercase">
           Scroll
         </span>
         <motion.div

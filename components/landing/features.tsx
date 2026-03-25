@@ -65,7 +65,7 @@ export function Features() {
                   <f.icon className="size-6" />
                 </div>
                 <h3 className="font-heading text-xl font-semibold mb-3">{f.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-soft leading-relaxed">
                   {f.description}
                 </p>
               </div>

@@ -56,11 +56,11 @@ export function Footer() {
                 <span className="text-foreground">ORA</span>
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-soft leading-relaxed">
               Transformamos procesos manuales en software inteligente. Tu socio
               tecnológico de confianza.
             </p>
-            <ul className="flex items-center gap-5 text-muted-foreground">
+            <ul className="flex items-center gap-5 text-soft">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -83,7 +83,7 @@ export function Footer() {
             {sections.map((section) => (
               <div key={section.title}>
                 <h3 className="mb-4 font-semibold text-sm">{section.title}</h3>
-                <ul className="space-y-3 text-sm text-muted-foreground">
+                <ul className="space-y-3 text-sm text-soft">
                   {section.links.map((link) => (
                     <li key={link.name}>
                       <a
@@ -101,7 +101,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 flex flex-col justify-between gap-4 border-t border-teal/[0.08] pt-8 text-xs text-muted-foreground md:flex-row md:items-center">
+        <div className="mt-10 flex flex-col justify-between gap-4 border-t border-teal/[0.08] pt-8 text-xs text-soft md:flex-row md:items-center">
           <p className="order-2 lg:order-1">
             &copy; {new Date().getFullYear()} Nexora. Todos los derechos
             reservados.

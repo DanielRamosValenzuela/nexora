@@ -1,43 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
-/* ── Beam types & factory ── */
-interface Beam {
-  x: number;
-  y: number;
-  width: number;
-  length: number;
-  angle: number;
-  speed: number;
-  opacity: number;
-  pulse: number;
-  pulseSpeed: number;
-  layer: number;
-}
-
-const LAYERS = 3;
-const BEAMS_PER_LAYER = 6;
-
-function createBeam(w: number, h: number, layer: number): Beam {
-  return {
-    x: Math.random() * w,
-    y: Math.random() * h,
-    width: 8 + layer * 4,
-    length: h * 2.5,
-    angle: -35 + Math.random() * 10,
-    speed: 0.15 + layer * 0.15 + Math.random() * 0.15,
-    opacity: 0.04 + layer * 0.03 + Math.random() * 0.04,
-    pulse: Math.random() * Math.PI * 2,
-    pulseSpeed: 0.008 + Math.random() * 0.012,
-    layer,
-  };
-}
-
-/* ── Rotating words ── */
 const rotatingWords = [
   "inteligente",
   "eficiente",
@@ -47,87 +14,12 @@ const rotatingWords = [
 ];
 
 export function Hero() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const beamsRef = useRef<Beam[]>([]);
-  const rafRef = useRef(0);
   const [wordIndex, setWordIndex] = useState(0);
 
   const { scrollY } = useScroll();
   const textY = useTransform(scrollY, [0, 800], [0, -150]);
   const textOpacity = useTransform(scrollY, [0, 500], [1, 0]);
 
-  /* Beam canvas animation */
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio, 2);
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      canvas.style.width = `${window.innerWidth}px`;
-      canvas.style.height = `${window.innerHeight}px`;
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(dpr, dpr);
-
-      beamsRef.current = [];
-      for (let l = 1; l <= LAYERS; l++) {
-        for (let i = 0; i < BEAMS_PER_LAYER; i++) {
-          beamsRef.current.push(createBeam(window.innerWidth, window.innerHeight, l));
-        }
-      }
-    };
-
-    resize();
-    window.addEventListener("resize", resize);
-
-    const animate = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-
-      // Clear with transparent — the video/celestial shows through
-      ctx.clearRect(0, 0, w, h);
-
-      beamsRef.current.forEach((beam) => {
-        beam.y -= beam.speed * (beam.layer / LAYERS + 0.5);
-        beam.pulse += beam.pulseSpeed;
-
-        if (beam.y + beam.length < -50) {
-          beam.y = h + 50;
-          beam.x = Math.random() * w;
-        }
-
-        ctx.save();
-        ctx.translate(beam.x, beam.y);
-        ctx.rotate((beam.angle * Math.PI) / 180);
-
-        const pulsingOpacity = Math.min(1, beam.opacity * (0.8 + Math.sin(beam.pulse) * 0.4));
-        const grad = ctx.createLinearGradient(0, 0, 0, beam.length);
-        grad.addColorStop(0, `rgba(6,182,212,0)`);
-        grad.addColorStop(0.2, `rgba(6,182,212,${pulsingOpacity * 0.5})`);
-        grad.addColorStop(0.5, `rgba(6,182,212,${pulsingOpacity})`);
-        grad.addColorStop(0.8, `rgba(6,182,212,${pulsingOpacity * 0.5})`);
-        grad.addColorStop(1, `rgba(6,182,212,0)`);
-
-        ctx.fillStyle = grad;
-        ctx.filter = `blur(${2 + beam.layer * 2}px)`;
-        ctx.fillRect(-beam.width / 2, 0, beam.width, beam.length);
-        ctx.restore();
-      });
-
-      rafRef.current = requestAnimationFrame(animate);
-    };
-    animate();
-
-    return () => {
-      window.removeEventListener("resize", resize);
-      cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
-
-  /* Rotating word timer */
   useEffect(() => {
     const id = setInterval(() => {
       setWordIndex((prev) => (prev + 1) % rotatingWords.length);
@@ -139,12 +31,6 @@ export function Hero() {
     <section className="relative h-screen flex items-center justify-center px-4">
       {/* Light overlay for legibility */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#060b18]/50 via-[#060b18]/20 to-[#060b18]/70" />
-
-      {/* Beam canvas — transparent bg, teal beams overlay */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 z-[1] pointer-events-none mix-blend-screen"
-      />
 
       {/* Content */}
       <motion.div
@@ -219,11 +105,9 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll hint */}
+      {/* Scroll hint — fades out as user scrolls past hero */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
+        style={{ opacity: textOpacity }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
       >
         <span className="text-xs text-muted-foreground tracking-widest uppercase">

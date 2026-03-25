@@ -14,39 +14,30 @@ export default function Home() {
       <Navbar />
 
       <div className="relative z-10">
-        {/* Hero — transparent, video fully visible */}
-        <Hero />
-
-        {/*
-          Transition overlay — starts INSIDE the hero (overlaps last 300px)
-          and extends into the content. This creates one seamless gradient
-          with no hard edge between hero and sections.
-        */}
-        <div
-          className="relative -mt-[300px] pt-[300px]"
-          aria-hidden="true"
-          style={{
-            pointerEvents: "none",
-          }}
-        >
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to bottom, transparent 0%, rgba(6,11,24,0.15) 100px, rgba(6,11,24,0.35) 200px, rgba(6,11,24,0.55) 350px, rgba(6,11,24,0.7) 500px, rgba(6,11,24,0.8) 700px)",
-            }}
-          />
+        {/* Hero stays pinned — video visible while scrolling */}
+        <div className="sticky top-0 z-0 h-screen">
+          <Hero />
         </div>
 
-        {/* Content sections — solid backdrop, no blur needed */}
-        <div className="relative bg-[#060b18]/80">
-          <main>
-            <Services />
-            <Process />
-            <Features />
-            <Contact />
-          </main>
-          <Footer />
+        {/* Content slides over the hero */}
+        <div className="relative z-10">
+          <div
+            className="h-32 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(to bottom, transparent, rgba(6,11,24,0.7))",
+            }}
+          />
+
+          <div className="bg-[#060b18]/70">
+            <main>
+              <Services />
+              <Process />
+              <Features />
+              <Contact />
+            </main>
+            <Footer />
+          </div>
         </div>
       </div>
     </>
